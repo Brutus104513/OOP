@@ -1,11 +1,29 @@
 using System;
 
-namespace OOP
+namespace OOP2
 {
-    class Two_D
+    public sealed class Two_D : Array
     {
         private bool not_random = false;
         private int[,] array;
+
+        public Two_D()
+        {
+            Random_filling(20, 20);
+        }
+
+        public Two_D(bool not_random_filling, int height, int width)
+        {
+            not_random = not_random_filling;
+            if(not_random)
+            {
+                User_filling(height, width);
+            }
+            else
+            {
+                Random_filling(height, width);
+            }
+        }
 
         private void Random_filling(int height, int width)
         {
@@ -31,6 +49,50 @@ namespace OOP
                 {
                     array[i, j] = int.Parse(line[j]);
                 }
+            }
+        }
+
+        public override void Print_array()
+        {
+            for(int i = 0; i < array.GetLength(0); i++)
+            {
+                for(int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write($"{array[i, j]} ");
+                }
+                Console.Write("\n");
+            }
+        }
+
+        public override double Average()
+        {
+            double average = 0;
+            for(int i = 0; i < array.GetLength(0); i++)
+            {
+                for(int j = 0; j < array.GetLength(1); j++)
+                {
+                    average += array[i, j] * 1.0 / array.GetLength(0) / array.GetLength(1);
+                }
+            }
+            return average;
+        }
+
+        public void Print_array_with_alternation() 
+        {
+            for(int i = 0; i < array.GetLength(0); i++)
+            {
+                for(int j = 0; j < array.GetLength(1); j++)
+                {
+                    if(i % 2 == 0)
+                    {
+                        Console.Write($"{array[i, j]} ");
+                    }
+                    else
+                    {
+                        Console.Write($"{array[i, array.GetLength(1) - j - 1]} ");
+                    }
+                }
+                Console.Write("\n");
             }
         }
 
@@ -65,68 +127,6 @@ namespace OOP
                 determinant += Convert.ToInt32(Math.Pow(-1, i)) * Matrix_determinant(new_matrix) * matrix[0, i];
             }
             return determinant;    
-        }
-
-        public Two_D()
-        {
-            Random_filling(20, 20);
-        }
-
-        public Two_D(bool not_random_filling, int height, int width)
-        {
-            not_random = not_random_filling;
-            if(not_random)
-            {
-                User_filling(height, width);
-            }
-            else
-            {
-                Random_filling(height, width);
-            }
-        }
-
-        public void Print_array_normally() 
-        {
-            for(int i = 0; i < array.GetLength(0); i++)
-            {
-                for(int j = 0; j < array.GetLength(1); j++)
-                {
-                    Console.Write($"{array[i, j]} ");
-                }
-                Console.Write("\n");
-            }
-        }
-
-        public void Print_array_with_alternation() 
-        {
-            for(int i = 0; i < array.GetLength(0); i++)
-            {
-                for(int j = 0; j < array.GetLength(1); j++)
-                {
-                    if(i % 2 == 0)
-                    {
-                        Console.Write($"{array[i, j]} ");
-                    }
-                    else
-                    {
-                        Console.Write($"{array[i, array.GetLength(1) - j - 1]} ");
-                    }
-                }
-                Console.Write("\n");
-            }
-        }
-
-        public double Average()
-        {
-            double average = 0;
-            for(int i = 0; i < array.GetLength(0); i++)
-            {
-                for(int j = 0; j < array.GetLength(1); j++)
-                {
-                    average += array[i, j] * 1.0 / array.GetLength(0) / array.GetLength(1);
-                }
-            }
-            return average;
         }
 
         public int Matrix_determinant_array()

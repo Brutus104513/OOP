@@ -1,8 +1,8 @@
 using System;
 
-namespace OOP
+namespace OOP2
 {
-    class Gear
+    public sealed class Gear : Array
     {
         private bool not_random = false;
         private int[][] array;
@@ -36,12 +36,13 @@ namespace OOP
                 }
             }
         }
+
         public Gear()
         {
             Random_filling(20);
         }
 
-        public Gear(bool not_random_filling, int length)
+        public Gear(bool not_random_filling, int length) : base(not_random_filling, length)
         {
             not_random = not_random_filling;
             if(not_random)
@@ -54,7 +55,7 @@ namespace OOP
             }
         }
 
-        public double Average()
+        public override double Average()
         {
             double average = 0;
             for(int i = 0; i < array.Length; i++)
@@ -88,7 +89,7 @@ namespace OOP
             }
         }
 
-        public void Print_array()
+        public override void Print_array()
         {
             for(int i = 0; i < array.Length; i++)
             {

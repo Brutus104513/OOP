@@ -1,11 +1,29 @@
 using System;
 
-namespace OOP
+namespace OOP2
 {
-    class One_D
+    public sealed class One_D : Array
     {
         private bool not_random = false;
         private int[] array;
+
+        public One_D(bool not_random_filling, int length) : base(not_random_filling, length)
+        {
+            not_random = not_random_filling;
+            if(not_random)
+            {
+                User_filling(length);
+            }
+            else
+            {
+                Random_filling(length);
+            }
+        }
+
+        public One_D()
+        {
+            Random_filling(20);
+        }
 
         private void Random_filling(int length)
         {
@@ -27,6 +45,14 @@ namespace OOP
             }
         }
 
+        public override void Print_array()
+        {
+            for(int i = 0; i < array.Length; i++)
+            {
+                Console.Write($"{array[i]} ");
+            }
+            Console.Write("\n");
+        }
         private int Minimum(int[] _array)
         {
             int minimum = _array[0];
@@ -39,6 +65,7 @@ namespace OOP
             }
             return minimum;
         }
+
 
         private int Maximum(int[] _array)
         {
@@ -53,6 +80,7 @@ namespace OOP
             return maximum;
         }
 
+
         private bool Find(int[] _array, int number, int border)
         {
             for(int i = 0; i < border; i++)
@@ -65,34 +93,7 @@ namespace OOP
             return false;
         }
 
-        public One_D()
-        {
-            Random_filling(20);
-        }
-
-        public One_D(bool not_random_filling, int length)
-        {
-            not_random = not_random_filling;
-            if(not_random)
-            {
-                User_filling(length);
-            }
-            else
-            {
-                Random_filling(length);
-            }
-        }
-
-        public void Print_array() 
-        {
-            for(int i = 0; i < array.Length; i++)
-            {
-                Console.Write($"{array[i]} ");
-            }
-            Console.Write("\n");
-        }
-
-        public double Average()
+        public override double Average()
         {
             double average = 0;
             for(int i = 0; i < array.Length; i++)
@@ -124,6 +125,7 @@ namespace OOP
             }
             array = new_array;
         }
+
         public void Array_without_repetitions()
         {
             int counter = 0;
