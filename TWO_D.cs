@@ -9,25 +9,31 @@ namespace OOP2
 
         public Two_D()
         {
-            Random_filling(20, 20);
+            Random_filling();
         }
 
-        public Two_D(bool not_random_filling, int height, int width)
+        public Two_D(bool not_random_filling) : base(not_random_filling)
         {
-            not_random = not_random_filling;
-            if(not_random)
+            Array_filling(not_random_filling);
+        }
+
+        public override void Array_filling(bool not_random_filling)
+        {
+            if(not_random_filling)
             {
-                User_filling(height, width);
+                User_filling();
             }
             else
             {
-                Random_filling(height, width);
+                Random_filling();
             }
         }
 
-        private void Random_filling(int height, int width)
+        protected override void Random_filling()
         {
             Random rnd = new Random();
+            int height = rnd.Next(5, 16);
+            int width = rnd.Next(5, 16);
             array = new int[height, width];
             for(int i = 0; i < height; i++)
             {
@@ -38,8 +44,12 @@ namespace OOP2
             }
         }
 
-        private void User_filling(int height, int width)
+        protected override void User_filling()
         {
+            Console.WriteLine("Введите количество строк.");
+            int height = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите количество столбцов.");
+            int width = int.Parse(Console.ReadLine());
             Console.WriteLine($"Введите {height} строк, в каждой строке - по {width} чисел");
             array = new int[height, width];
             for(int i = 0; i < height; i++)

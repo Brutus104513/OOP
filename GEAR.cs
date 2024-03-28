@@ -4,12 +4,12 @@ namespace OOP2
 {
     public sealed class Gear : Array
     {
-        private bool not_random = false;
         private int[][] array;
 
-        private void Random_filling(int length)
+        protected override void Random_filling()
         {
             Random rnd = new Random();
+            int length = rnd.Next(5, 16);
             array = new int[length][];
             for(int i = 0; i < length; i++)
             {
@@ -22,8 +22,10 @@ namespace OOP2
             }
         }
 
-        private void User_filling(int length)
+        protected override void User_filling()
         {
+            Console.WriteLine("Введите количество строк в ступенчатом массиве.");
+            int length = int.Parse(Console.ReadLine());
             Console.WriteLine($"Введите {length} строк, в каждой строке - последовательность чисел через пробел");
             array = new int[length][];
             for(int i = 0; i < length; i++)
@@ -37,22 +39,26 @@ namespace OOP2
             }
         }
 
-        public Gear()
+        public override void Array_filling(bool not_random_filling)
         {
-            Random_filling(20);
-        }
-
-        public Gear(bool not_random_filling, int length) : base(not_random_filling, length)
-        {
-            not_random = not_random_filling;
-            if(not_random)
+            if(not_random_filling)
             {
-                User_filling(length);
+                User_filling();
             }
             else
             {
-                Random_filling(length);
+                Random_filling();
             }
+        }
+
+        public Gear()
+        {
+            Random_filling();
+        }
+
+        public Gear(bool not_random_filling) : base(not_random_filling)
+        {
+            Array_filling(not_random_filling);
         }
 
         public override double Average()

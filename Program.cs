@@ -7,9 +7,9 @@ namespace OOP2
         static void Main(string[] args)
         {
             Array[] arrays = new Array[3];
-            arrays[0] = new One_D(false, 5);
-            arrays[1] = new Two_D(false, 6, 7);
-            arrays[2] = new Gear(false, 3);
+            arrays[0] = new One_D(false);
+            arrays[1] = new Two_D(false);
+            arrays[2] = new Gear(false);
             for(int i = 0; i < 3; i++)
             {
                 Console.WriteLine(arrays[i].Average());
