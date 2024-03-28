@@ -1,6 +1,6 @@
 using System;
 
-namespace OOP2
+namespace OOP3
 {
     public sealed class Gear : Array
     {
@@ -39,26 +39,8 @@ namespace OOP2
             }
         }
 
-        public override void Array_filling(bool not_random_filling)
+        public Gear(bool not_random_filling = false) : base(not_random_filling)
         {
-            if(not_random_filling)
-            {
-                User_filling();
-            }
-            else
-            {
-                Random_filling();
-            }
-        }
-
-        public Gear()
-        {
-            Random_filling();
-        }
-
-        public Gear(bool not_random_filling) : base(not_random_filling)
-        {
-            Array_filling(not_random_filling);
         }
 
         public override double Average()

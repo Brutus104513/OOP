@@ -1,33 +1,13 @@
 using System;
 
-namespace OOP2
+namespace OOP3
 {
     public sealed class Two_D : Array
     {
         private bool not_random = false;
         private int[,] array;
 
-        public Two_D()
-        {
-            Random_filling();
-        }
-
-        public Two_D(bool not_random_filling) : base(not_random_filling)
-        {
-            Array_filling(not_random_filling);
-        }
-
-        public override void Array_filling(bool not_random_filling)
-        {
-            if(not_random_filling)
-            {
-                User_filling();
-            }
-            else
-            {
-                Random_filling();
-            }
-        }
+        public Two_D(bool not_random_filling = false) : base(not_random_filling){}
 
         protected override void Random_filling()
         {
