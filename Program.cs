@@ -1,20 +1,21 @@
-﻿using System;
+﻿using Avalonia;
+using System;
 
-namespace OOP3
+namespace MVVM;
+
+class Program
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Array[] arrays = new Array[3];
-            arrays[0] = new One_D();
-            arrays[1] = new Two_D(false);
-            arrays[2] = new Gear(false);
-            for(int i = 0; i < 3; i++)
-            {
-                Console.WriteLine(arrays[i].Average());
-                arrays[i].Print_array();
-            }
-        }
-    }
+    // Initialization code. Don't use any Avalonia, third-party APIs or any
+    // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
+    // yet and stuff might break.
+    [STAThread]
+    public static void Main(string[] args) => BuildAvaloniaApp()
+        .StartWithClassicDesktopLifetime(args);
+
+    // Avalonia configuration, don't remove; also used by visual designer.
+    public static AppBuilder BuildAvaloniaApp()
+        => AppBuilder.Configure<App>()
+            .UsePlatformDetect()
+            .WithInterFont()
+            .LogToTrace();
 }
